@@ -1,8 +1,9 @@
 #!/bin/bash
 
-#Created on 4/4/2022 by A.M
+#Date: 4/4/2022
+#Written: Andrew Michael
 
-#Drops tables in the database
+#This script drops all the tables in the EDB database.
 
 psql -U postgres -d EDG -c "DROP TABLE BUILDING;"
 psql -U postgres -d EDG -c "DROP TABLE METER_ENTRY;"
