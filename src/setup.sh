@@ -27,14 +27,14 @@ psql -U postgres -d EDG -c "CREATE TABLE METER(
 );"
 
 psql -U postgres -d EDG -c "CREATE TABLE WEATHER(
-Month varchar(9) PRIMARY KEY,
+Month integer PRIMARY KEY,
 Avg_temp decimal(3,1)
 );"
 
 psql -U postgres -d EDG -c "CREATE TABLE METER_ENTRY(
 meconsumpID char(10) PRIMARY KEY,
-Start_date text,
-End_date text,
+Start_date date,
+End_date date,
 Usage decimal(10,2),
 Cost decimal(10,2),
 mName varchar(4),
