@@ -33,8 +33,8 @@ Avg_temp decimal(3,1)
 
 psql -U postgres -d EDG -c "CREATE TABLE METER_ENTRY(
 meconsumpID char(10) PRIMARY KEY,
-Start_date date,
-End_date date,
+Start_date text,
+End_date text,
 Usage decimal(10,2),
 Cost decimal(10,2),
 mName varchar(4),
