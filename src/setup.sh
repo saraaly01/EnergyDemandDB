@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#Last updated on 4/4/2022 by K.K
+#Last updated on 4/5/2022 1:10PM by K.K 
 
 #This code will initialize the database "EDG" and populate it with the following data
 #located in the following csv flies: build.csv, degree_days.csv, meter_data.csv, mentries.csv
@@ -8,7 +8,7 @@
 
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
-#createdb EDG;
+createdb EDG;
 
 psql -U postgres -d EDG -c "CREATE TABLE BUILDING (
 name text unique,
@@ -38,11 +38,14 @@ End_date date,
 Usage decimal(10,2),
 Cost decimal(10,2),
 mName varchar(4),
-FOREIGN KEY (mName) REFERENCES meter (mName)
+mID char(10),
+FOREIGN KEY (mID) REFERENCES meter (mID)
 );"
 
 psql -U postgres -d EDG -c "\\copy BUILDING FROM '$SCRIPT_DIR/build.csv' csv header"
 psql -U postgres -d EDG -c "\\copy METER FROM '$SCRIPT_DIR/meter_data.csv' csv header"
 psql -U postgres -d EDG -c "\\copy WEATHER FROM '$SCRIPT_DIR/degree_days.csv' csv header"
 psql -U postgres -d EDG -c "\\copy METER_ENTRY FROM '$SCRIPT_DIR/mentries.csv' csv header"
+
+printf "Table Names Created: \n BUILDING \n METER \n WEATHER \n METER_ENTRY\n"
 
