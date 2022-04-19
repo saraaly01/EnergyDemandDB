@@ -41,9 +41,14 @@ def form():
     return render_template('home.html',items=items)
 @app.route("/results", methods=['POST']) 
 def result():
-    if request.form['option'] == 1:
-        rows = connect('SELECT * FROM Building WHERE name = ' + request.form['building1'] + ';')
-    return render_template
+    rows = connect('SELECT * FROM Building WHERE name = ' + '\''+ request.form.get('building1') +'\';')
+    heads = ['Name','Property ID', 'Year Built','Primary Use','Efficiency Factor','Gross Floor Area']
+    return render_template('my-result.html', rows = rows, heads = heads)
+
+@app.route('/query-handler', methods=['POST'])
+def query_handler():
+    rows = connect(request.form['query'])
+    return render_template('my-result.html', rows=rows)
 
 if __name__ == '__main__':
     app.run(debug = True)
