@@ -29,6 +29,7 @@
                 {%for head in heads%}
                     <th>{{head}}</th>
                 {%endfor%}
+                
                 </tr>
             </thead>
             <!-- nested for loops in jinja template -->
@@ -42,5 +43,6 @@
             {%endfor%}
             </tbody>
         </table>
+        {{total}}
     </body>
 </html>

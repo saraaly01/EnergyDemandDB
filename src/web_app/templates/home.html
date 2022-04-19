@@ -4,6 +4,11 @@
 		<meta charset="utf-8">
 		<title> Building Form </title>
 	</head>
+	<style>
+		#stealthy {
+			display: none;
+		}
+	</style>
 	<body>
 		<h1> WELCOME </h1>
 		<form action="/results" method="POST">
@@ -21,6 +26,16 @@
 			<label for="option2">Energy Demanded
 				<input id="option2" type="radio" name="options" value = "option2">
 			</label>
+				<div id="stealthy">
+					<br>
+					<label for="start_date">Start date
+						<input id="start_date" type="date" name="start_date">
+					</label>
+					<br> 
+					<label for="end_date">End date
+						<input id="end_date" type="date" name="end_date">
+					</label>
+				</div>
 			<br>
 			<label for="option3">Seasonality Comparison
 				<input id="option3" type="radio" name="options" value = "option3">
@@ -28,4 +43,21 @@
 			<br>
 			<input type="submit" value="Submit">
 		</form>
+		<script>
+			msg = document.getElementById('stealthy')
+			function handleRadioClick() {
+				if(document.getElementById("option2").checked){
+					msg.style.display = 'inline';
+				} else {
+					msg.style.display = 'none';
+				}
+			}
+			const radioButtons = document.querySelectorAll('input[name="options"]');
+			radioButtons.forEach(radio => {
+				radio.addEventListener('click', handleRadioClick);
+			});
+
+
+
+		</script>
 </html>
