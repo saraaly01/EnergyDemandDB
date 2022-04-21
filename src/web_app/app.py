@@ -47,13 +47,21 @@ def result():
         return render_template('my-result.html', rows = rows, heads = heads)
     elif request.form.get('options') == 'option2':
         
-        sum = connect('SELECT SUM(usage) FROM meter_entry WHERE start_date > \''+ request.form.get('start_date') +'\' AND end_date < \'' + request.form.get('end_date') + '\';')
+        sum = connect('SELECT SUM(usage) FROM meter_entry WHERE start_date >= \''+ request.form.get('start_date') +'\' AND end_date <= \'' + request.form.get('end_date') + '\';')
         eff_F = connect('SELECT eff_factor FROM building WHERE name = \'' + request.form.get('building1') + '\';')
-    
         total = float(sum[0][0])* float(eff_F[0][0])
-
         heads = ['usage']
         return render_template('my-result.html', total=total,heads=heads)
+    elif request.form.get('options') == 'option3':
+        sumS = connect('SELECT SUM(usage) FROM meter_entry WHERE start_date >= \'2008-03-01\' AND end_date <= \'2010-06-20\';')
+        print(sumS)
+        eff_FS = connect('SELECT eff_factor FROM building WHERE name = \'' + request.form.get('building1') + '\';')
+        Stotal = float(sumS[0][0])* float(eff_FS[0][0])
+        heads = ['Spring Usage']
+        return render_template('my-result.html', total=Stotal,heads=heads)
+        
+
+
 
 @app.route('/query-handler', methods=['POST'])
 def query_handler():
@@ -62,5 +70,3 @@ def query_handler():
 
 if __name__ == '__main__':
     app.run(debug = True)
-
-
