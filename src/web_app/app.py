@@ -41,10 +41,12 @@ app = Flask(__name__)
 @app.route("/")
 def form():
     return render_template('hometest.html')
-
+@app.route("/home")
+def home():
+    return render_template('hometest.html')
 @app.route("/about")
 def about():
-    render_template('about.html')
+    return render_template('about.html')
 
 @app.route("/EDR")
 def EDR():
