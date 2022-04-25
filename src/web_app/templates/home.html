@@ -9,9 +9,12 @@
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 	</head>
 	<style>
-		#stealthy {
-			display: none;
-		}
+			#stealthy1 {
+				display: none;
+			}
+			#stealthy2 {
+				display: none;
+			}
             h1{
                 margin-bottom: 0.5rem;
                 font-family: 'Bungee Shade', sans-serif;
@@ -25,7 +28,7 @@
                 font-family: 'Oswald', sans-serif;
                 font-weight: 100;
                 line-height: .7;
-                color: rgb(0, 0, 0);
+                color: white;
                 font-size: 20px;
                 margin-right: 2cm;
 
@@ -40,6 +43,26 @@
                 margin: .3cm;
 
             }
+			.options{
+				margin-bottom: 0.5rem;
+                font-family: 'Oswald', sans-serif;
+                font-weight: 100;
+                line-height: .7;
+                color: rgb(19, 100, 39);
+                font-size: 23px;
+                margin: .3cm;
+				padding-left: 50px;
+			}
+			.forum_title{
+				margin-bottom: 0.5rem;
+                font-family: 'Oswald', sans-serif;
+                font-weight: 100;
+                line-height: .7;
+                color: rgb(19, 100, 39);
+                font-size: 23px;
+                margin: .3cm;
+	
+			}
 			label{
 				margin-bottom: 0.5rem;
                 font-family: 'Oswald', sans-serif;
@@ -48,10 +71,20 @@
                 color: rgb(19, 100, 39);
                 font-size: 23px;
                 margin: .3cm;
+	
+			}
 
+			p {
+				margin-bottom: 0.5rem;
+                font-family: 'Oswald', sans-serif;
+                font-weight: 100;
+                line-height: .7;
+                color: black;
+                font-size: 23px;
+                margin: .3cm;	
 			}
 			.form-select{
-				max-width: 50%;
+				max-width: 33%;
 			}
 
 	</style>
@@ -59,7 +92,7 @@
 		<div class="p-5 bg-success bg-gradient text-center">
             <h1>Data Retrieval</h1>
         </div>
-		<nav class="navbar navbar-expand-sm bg-info">
+		<nav style="background-color: #344277" class="navbar navbar-expand-sm">
             <div class="container-fluid">
                 <ul class="navbar-nav">
                     <li class="nav-item">
@@ -75,7 +108,7 @@
             </div>
         </nav>
 		<form action="/results" method="POST">
-			<label for="buildings1">Choose a Building Below</label>
+			<label class="forum_title" for="buildings1" style="color: black;">Choose a Building Below</label>
 			<select name="building1" id="buildings1"  class="form-select form-select-sm mb-1">
 				{% for item in items %}	
 				<option value="{{item[0]}}">{{item[0]}}</option>
@@ -83,14 +116,14 @@
 			</select>	
 			<br><br>
 			<p>What type of Information would you like?</p>
-			<label for="option1">Basic Statistics
+			<label class="options" for="option1">Basic Statistics
 				<input id="option1" type="radio" name="options" value = "option1">
 			</label>
 			<br>
-			<label for="option2">Energy Demanded
+			<label class="options" for="option2">Energy Demanded
 				<input id="option2" type="radio" name="options" value = "option2">
 			</label>
-				<div id="stealthy">
+				<div id="stealthy1">
 					<br>
 					<label for="start_date">Start date
 						<input id="start_date" type="date" name="start_date">
@@ -101,8 +134,9 @@
 					</label>
 				</div>
 			<br>
-			<label for="option3">Seasonality Comparison
+			<label class="options" for="option3">Seasonality Comparison
 				<input id="option3" type="radio" name="options" value = "option3">
+				<div id = "stealthy2">
 				<select name="years" id="years">
 					<option value="2009">2009</option>
 					<option value="2010">2010</option>
@@ -116,18 +150,26 @@
 					<option value="2018">2018</option>
 					<option value="2019">2019</option>
 					<option value="2020">2020</option>
-				</select>	
+				</select>
+				</div>	
 			</label>
 			<br>
 			<input type="submit" value="Submit">
 		</form>
 		<script>
-			msg = document.getElementById('stealthy')
+			st1 = document.getElementById('stealthy1')
+			st2 = document.getElementById('stealthy2') 
 			function handleRadioClick() {
 				if(document.getElementById("option2").checked){
-					msg.style.display = 'inline';
+					st1.style.display = 'inline';
 				} else {
-					msg.style.display = 'none';
+					st1.style.display = 'none';
+				}
+				if(document.getElementById("option3").checked){
+					st2.style.display = 'inline';
+				}
+				else {
+					st2.style.display = 'none';
 				}
 			}
 			const radioButtons = document.querySelectorAll('input[name="options"]');

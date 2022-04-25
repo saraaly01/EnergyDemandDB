@@ -82,6 +82,7 @@ def result():
         Wtotal = float(sumWinter[0][0]) * float(eff_FS[0][0])
         ttl = [Stotal, Wtotal]
         heads = ['Summer Usage', 'Winter Usage']
+		#FIXME: restructure format to not use a list
         return render_template('my-result.html', total=ttl, heads=heads)
 
 
