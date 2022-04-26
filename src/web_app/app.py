@@ -46,7 +46,7 @@ def home():
     return render_template('hometest.html')
 @app.route("/about")
 def about():
-    return render_template('about.html')
+    return render_template('zabout.html')
 
 @app.route("/EDR")
 def EDR():
@@ -68,7 +68,7 @@ def result():
         eff_F = connect('SELECT eff_factor FROM building WHERE name = \'' +
                         request.form.get('building1') + '\';')
         total = float(sum[0][0]) * float(eff_F[0][0])
-        heads = ['usage']
+        heads = ['Usage']
         return render_template('my-result.html', total=total, heads=heads)
     elif request.form.get('options') == 'option3':
         currYear = request.form.get('years')
