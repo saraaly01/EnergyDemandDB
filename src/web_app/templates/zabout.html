@@ -41,6 +41,16 @@
 				margin: 20px;
 				padding: 10px;
 			}
+			img{
+				border: 1px solid rgb(220, 220, 220);
+				border-radius: 8px;
+				display: block;
+				margin-left: auto;
+				margin-right: auto;
+				padding: 5px;
+				max-width: 50%;
+				height: auto;
+			}
 
        </style>
     	<body style="background-color: whitesmoke">
@@ -64,7 +74,7 @@
         </nav>
 		<h2>Who We Are</h2>
 		<p> The group of developers consist of Andrew, Kevin, and Sara. As of Spring 2022, we are all computer science students at TCNJ. </p>
-		<img src="eddb.JPEG" alt="A picture of the 3 people who developed the project." height=250; width=450;>
+		<img src="{{ url_for('static', filename='eddb.JPEG')}}" alt="A picture of the 3 people who developed the project.">
 </body>
   <footer class="text-center text-white" style="background-color:whitesmoke;">
         <div class="container p-4"></div>
