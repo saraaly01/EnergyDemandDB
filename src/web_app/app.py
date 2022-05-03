@@ -7,6 +7,7 @@ import psycopg2
 from config import config
 from flask import Flask, render_template, request
 
+
 # Connect to the PostgresSQL database server
 
 
@@ -56,6 +57,7 @@ def EDR():
 
 @app.route("/results", methods=['POST'])
 def result():
+    
     if request.form.get('options') == 'option1':
         rows = connect('SELECT * FROM Building WHERE name = ' +
                        '\'' + request.form.get('building1') + '\';')
@@ -63,25 +65,33 @@ def result():
                  'Primary Use', 'Efficiency Factor', 'Gross Floor Area']
         return render_template('my-result.html', rows=rows, heads=heads)
     elif request.form.get('options') == 'option2':
-        sum = connect('SELECT SUM(usage) FROM meter_entry WHERE start_date >= \'' + request.form.get(
+        sumEL = connect('SELECT SUM(usage) FROM meter_entry WHERE start_date >= \'' + request.form.get(
             'start_date') + '\' AND end_date <= \'' + request.form.get('end_date') + '\'AND mName LIKE \'EL%\';')
+        sumNG = connect('SELECT SUM(usage) FROM meter_entry WHERE start_date >= \'' + request.form.get(
+            'start_date') + '\' AND end_date <= \'' + request.form.get('end_date') + '\'AND mName LIKE \'NG%\';')
         eff_F = connect('SELECT eff_factor FROM building WHERE name = \'' +
                         request.form.get('building1') + '\';')
-        total = float(sum[0][0]) * float(eff_F[0][0])
-        heads = ['Usage']
+        total = float(sumEL[0][0]) * float(eff_F[0][0]) + float(eff_F[0][0]) * (float(sumNG[0][0]) * 29.3)
+        heads = ['Usage: kWh']
         return render_template('my-result.html', total=total, heads=heads)
     elif request.form.get('options') == 'option3':
         currYear = request.form.get('years')
-        sumSummer = connect('SELECT SUM(usage) FROM meter_entry WHERE start_date >= \'' +
-                            currYear + '-03-01\' AND end_date <= \'' + currYear + '-09-20\';')
-        sumWinter = connect('SELECT SUM(usage) FROM meter_entry WHERE start_date >= \'' + currYear + '-01-01\' AND end_date <= \'' +
-                            currYear + '-03-19\' OR start_date>= \'' + currYear + '-09-21\' AND end_date <= \'' + currYear + '-12-31\';')
+        sumSummerEL = connect('SELECT SUM(usage) FROM meter_entry WHERE start_date >= \'' +
+                            currYear + '-03-01\' AND end_date <= \'' + currYear + '-09-20\'' + 'AND mName LIKE \'EL%\';')
+
+        sumSummerNG = connect('SELECT SUM(usage) FROM meter_entry WHERE start_date >= \'' +
+                            currYear + '-03-01\' AND end_date <= \'' + currYear + '-09-20\'' + 'AND mName LIKE \'NG%\';')
+
+        sumWinterEL = connect('SELECT SUM(usage) FROM meter_entry WHERE start_date >= \'' + currYear + '-01-01\' AND end_date <= \'' +
+                            currYear + '-03-19\' OR start_date>= \'' + currYear + '-09-21\' AND end_date <= \'' + currYear + '-12-31\'' 'AND mName LIKE \'EL%\';')
+        sumWinterNG = connect('SELECT SUM(usage) FROM meter_entry WHERE start_date >= \'' + currYear + '-01-01\' AND end_date <= \'' +
+                            currYear + '-03-19\' OR start_date>= \'' + currYear + '-09-21\' AND end_date <= \'' + currYear + '-12-31\'' 'AND mName LIKE \'NG%\';')
         eff_FS = connect(
             'SELECT eff_factor FROM building WHERE name = \'' + request.form.get('building1') + '\';')
-        Stotal = float(sumSummer[0][0]) * float(eff_FS[0][0])
-        Wtotal = float(sumWinter[0][0]) * float(eff_FS[0][0])
+        Stotal = float(sumSummerEL[0][0]) * float(eff_FS[0][0]) + float(sumSummerNG[0][0]) * (float(eff_FS[0][0]) * 29.3)
+        Wtotal = float(sumWinterEL[0][0]) * float(eff_FS[0][0]) + float(sumWinterNG[0][0]) * (float(eff_FS[0][0]) * 29.3)
         ttl = [Stotal, Wtotal]
-        heads = ['Summer Usage', 'Winter Usage']
+        heads = ['Summer Usage: kWh', 'Winter Usage: kWh']
 		#FIXME: restructure format to not use a list
         return render_template('my-result.html', total=ttl, heads=heads)
 
@@ -95,3 +105,4 @@ def query_handler():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
