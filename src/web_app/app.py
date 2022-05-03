@@ -64,7 +64,7 @@ def result():
         return render_template('my-result.html', rows=rows, heads=heads)
     elif request.form.get('options') == 'option2':
         sum = connect('SELECT SUM(usage) FROM meter_entry WHERE start_date >= \'' + request.form.get(
-            'start_date') + '\' AND end_date <= \'' + request.form.get('end_date') + '\';')
+            'start_date') + '\' AND end_date <= \'' + request.form.get('end_date') + '\'AND mName LIKE \'EL%\';')
         eff_F = connect('SELECT eff_factor FROM building WHERE name = \'' +
                         request.form.get('building1') + '\';')
         total = float(sum[0][0]) * float(eff_F[0][0])
