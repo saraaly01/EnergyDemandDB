@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title> Building Form </title>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Bungee+Shade" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+	</head>
+	<style>
+			#stealthy1 {
+				display: none;
+			}
+			#stealthy2 {
+				display: none;
+			}
+            h1{
+                margin-bottom: 0.5rem;
+                font-family: 'Bungee Shade', sans-serif;
+                font-weight: 100;
+                line-height: .75;
+                color: whitesmoke;
+                font-size: 70px;
+            }
+            .nav-link{
+                margin-bottom: 0.5rem;
+                font-family: 'Oswald', sans-serif;
+                font-weight: 100;
+                line-height: .7;
+                color: white;
+                font-size: 20px;
+                margin-right: 2cm;
+
+            }
+            h2{
+                margin-bottom: 0.5rem;
+                font-family: 'Oswald', sans-serif;
+                font-weight: 100;
+                line-height: .7;
+                color: rgb(0, 0, 0);
+                font-size: 30px;
+                margin: .3cm;
+
+            }
+			.options{
+				margin-bottom: 0.5rem;
+                font-family: 'Oswald', sans-serif;
+                font-weight: 100;
+                line-height: .7;
+                color: rgb(19, 100, 39);
+                font-size: 23px;
+                margin: .3cm;
+				padding-left: 50px;
+			}
+			.forum_title{
+				margin-bottom: 0.5rem;
+                font-family: 'Oswald', sans-serif;
+                font-weight: 100;
+                line-height: .7;
+                color: rgb(19, 100, 39);
+                font-size: 23px;
+                margin: .3cm;
+	
+			}
+			label{
+				margin-bottom: 0.5rem;
+                font-family: 'Oswald', sans-serif;
+                font-weight: 100;
+                line-height: .7;
+                color: rgb(19, 100, 39);
+                font-size: 23px;
+                margin: .3cm;
+	
+			}
+
+			p {
+				margin-bottom: 0.5rem;
+                font-family: 'Oswald', sans-serif;
+                font-weight: 100;
+                line-height: .7;
+                color: black;
+                font-size: 23px;
+                margin: .3cm;	
+			}
+			.form-select{
+				max-width: 33%;
+			}
+
+	</style>
+	<body style="background-color: whitesmoke">
+		<div class="p-5 bg-success bg-gradient text-center">
+            <h1>Data Retrieval</h1>
+        </div>
+		<nav style="background-color: #344277" class="navbar navbar-expand-sm">
+            <div class="container-fluid">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="EDR">Energy Data Retrieval</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about">About</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+		<form action="/results" method="POST">
+			<label class="forum_title" for="buildings1" style="color: black;">Choose a Building Below</label>
+			<select name="building1" id="buildings1"  class="form-select form-select-sm mb-1">
+				{% for item in items %}	
+				<option value="{{item[0]}}">{{item[0]}}</option>
+				{% endfor %}
+			</select>	
+			<br><br>
+			<p>What type of Information would you like?</p>
+			<label class="options" for="option1">Basic Statistics
+				<input id="option1" type="radio" name="options" value = "option1">
+			</label>
+			<br>
+			<label class="options" for="option2">Energy Demanded
+				<input id="option2" type="radio" name="options" value = "option2">
+			</label>
+				<div id="stealthy1">
+					<br>
+					<label for="start_date">Start date
+						<input id="start_date" type="date" name="start_date">
+					</label>
+					<br> 
+					<label for="end_date">End date
+						<input id="end_date" type="date" name="end_date">
+					</label>
+				</div>
+			<br>
+			<label class="options" for="option3">Seasonality Comparison
+				<input id="option3" type="radio" name="options" value = "option3">
+				<div id = "stealthy2">
+				<select name="years" id="years">
+					<option value="2009">2009</option>
+					<option value="2010">2010</option>
+					<option value="2011">2011</option>
+					<option value="2012">2012</option>
+					<option value="2013">2013</option>
+					<option value="2014">2014</option>
+					<option value="2015">2015</option>
+					<option value="2016">2016</option>
+					<option value="2017">2017</option>
+					<option value="2018">2018</option>
+					<option value="2019">2019</option>
+					<option value="2020">2020</option>
+				</select>
+				</div>	
+			</label>
+			<br>
+			<input type="submit" value="Submit">
+		</form>
+		<script>
+			st1 = document.getElementById('stealthy1')
+			st2 = document.getElementById('stealthy2') 
+			function handleRadioClick() {
+				if(document.getElementById("option2").checked){
+					st1.style.display = 'inline';
+				} else {
+					st1.style.display = 'none';
+				}
+				if(document.getElementById("option3").checked){
+					st2.style.display = 'inline';
+				}
+				else {
+					st2.style.display = 'none';
+				}
+			}
+			const radioButtons = document.querySelectorAll('input[name="options"]');
+			radioButtons.forEach(radio => {
+				radio.addEventListener('click', handleRadioClick);
+			});
+		</script>
+  <footer class="text-center text-white" style="background-color:whitesmoke;">
+        <div class="container p-4"></div>
+        <div class="text-center p-3" style="background-color:black;">
+            Brought to you by Group 2-2.
+        </div>
+    </footer> 
+</html>
