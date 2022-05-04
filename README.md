@@ -58,3 +58,7 @@ Data Results Page:
 4. Select the desired year from the drop-down menu
 5. Click 'Submit' button
 
+Data Retrieval Page:
+![image](https://user-images.githubusercontent.com/44705804/166808539-03ba9c1c-4add-4782-a807-913368c533b0.png)
+
+
