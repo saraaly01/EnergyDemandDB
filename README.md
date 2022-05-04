@@ -5,5 +5,13 @@
 - Allows TCNJ sustainbility team a simple view to access TCNJ building data.
 - Implements PostgreSQL and Python Flask. 
 
-### Database population and creation instructions
-bash setup.sh
+### Steps for Installation
+1. Navigate to src/ and run setup.sh
+  ```./bash setup.sh```
+2. Navigate to web_app/ and run the following commands:
+  ```
+  FLASK_APP=app.py
+  flask run
+  ```
+3. Input the following url ```127.0.0.1:5000``` in any modern web-browser
+4. "Enjoy this brilliant application we made" -Andrew
