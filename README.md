@@ -61,4 +61,6 @@ Data Results Page:
 Data Retrieval Page:
 ![image](https://user-images.githubusercontent.com/44705804/166808539-03ba9c1c-4add-4782-a807-913368c533b0.png)
 
+Data Results Page:
+![image](https://user-images.githubusercontent.com/44705804/166809360-e71700d0-2ea3-443e-b370-f5855c62c5eb.png)
 
