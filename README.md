@@ -14,7 +14,7 @@
   flask run
   ```
 3. Input the following url ```127.0.0.1:5000``` in any modern web-browser
-4. "Enjoy this brilliant application we made" -Andrew
+4. "Enjoy this brilliant application we made" -Andrew M.
 
 ### Steps for Deleting the Database 
 1. Navigate to ```src/``` and run: ```./bash drop.sh ```
