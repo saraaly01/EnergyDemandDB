@@ -6,7 +6,7 @@
 - Implements PostgreSQL and Python Flask. 
 
 ### Steps for Installation
-1. Navigate to src/ and run setup.sh
+1. Navigate to ```src/``` and run setup.sh
   ```./bash setup.sh```
 2. Navigate to web_app/ and run the following commands:
   ```
@@ -15,3 +15,7 @@
   ```
 3. Input the following url ```127.0.0.1:5000``` in any modern web-browser
 4. "Enjoy this brilliant application we made" -Andrew
+
+### Steps for Deleting the Database 
+1. Navigate to ```src/``` and run: ```./bash drop.sh ```
+2. Done. It's as easy as that.
