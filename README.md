@@ -28,7 +28,11 @@
 3. Select the 'Basic Statistics' radio button
 4. Click 'Submit' button
 
+Data Retrieval Page:
+![image](https://user-images.githubusercontent.com/44705804/166807627-25a368a0-7d8d-4f7f-9664-a377f2c272b6.png)
+
 Returned Result:
+
 ![image](https://user-images.githubusercontent.com/44705804/166807060-9307e052-135d-444a-ae32-1fdc5a12a274.png)
 
 
@@ -38,6 +42,13 @@ Returned Result:
 3. Select the 'Energy Demanded' radio button
 4. Type in the desired date ranges for the 'Start date' and 'End date' text boxes (If an internal server error is displayed there are no values for the given range selected)
 5. Click 'Submit' button
+
+Data Retrieval Page:
+![image](https://user-images.githubusercontent.com/44705804/166807975-57d5a5a6-df52-49ef-8b27-54864bd1e360.png)
+
+Data Results Page:
+![image](https://user-images.githubusercontent.com/44705804/166808081-69084c38-8357-4fa2-8a0b-a060294be3fe.png)
+
 
 ### Obtaining Energy Demanded by Seasonality
 
