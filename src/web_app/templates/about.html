@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>TCNJ Energy Demand</title>
+        <meta charset="utf-8">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Bungee+Shade" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+        <script src = "https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <style>
+            h1{
+                margin-bottom: 0.5rem;
+                font-family: 'Bungee Shade', sans-serif;
+                font-weight: 100;
+                line-height: .75;
+                color: whitesmoke;
+                font-size: 70px;
+            }
+            .nav-link{
+                margin-bottom: 0.5rem;
+                font-family: 'Oswald', sans-serif;
+                font-weight: 100;
+                line-height: .7;
+                color: rgb(255, 255, 255);
+                font-size: 20px;
+                margin-right: 2cm;
+
+            }
+            h2{
+                margin-bottom: 0.5rem;
+                font-family: 'Oswald', sans-serif;
+                font-weight: 100;
+                line-height: .7;
+                color: rgb(0, 0, 0);
+                font-size: 30px;
+                margin: .3cm;
+				padding: 20px;
+            }
+			p{
+				font-size: 20px;
+				margin: 20px;
+				padding: 10px;
+			}
+			img{
+				border: 1px solid rgb(220, 220, 220);
+				border-radius: 8px;
+				display: block;
+				margin-left: auto;
+				margin-right: auto;
+				padding: 5px;
+				max-width: 50%;
+				height: auto;
+			}
+
+       </style>
+    	<body style="background-color: whitesmoke">
+		<div class="p-5 bg-success bg-gradient text-center">
+            <h1>About</h1>
+        </div>
+		<nav style="background-color: #344277" class="navbar navbar-expand-sm">
+            <div class="container-fluid">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="EDR">Energy Data Retrieval</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about">About</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+		<h2>Who We Are</h2>
+		<p> The group of developers consist of Andrew, Kevin, and Sara. As of Spring 2022, we are all computer science students at TCNJ. </p>
+		<img src="{{ url_for('static', filename='eddb.JPEG')}}" alt="A picture of the 3 people who developed the project.">
+
+        <p> We were also given help by TCNJ accounting students: Riley, Anthony, Juan, and Nila. </p>
+</body>
+  <footer class="text-center text-white" style="background-color:whitesmoke;">
+        <div class="container p-4"></div>
+        <div class="text-center p-3" style="background-color:black;">
+            Brought to you by Group 2-2.
+        </div>
+    </footer> 
+</html>
